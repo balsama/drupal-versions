@@ -27,6 +27,14 @@ $response = [
         ],
     ],
     'status' => 200,
+    'notes' => [
+        'This service does not include information on Drupal 7.'
+    ],
+    'links' => [
+        'Drupal core release cycle: major, minor, and patch releases' => 'https://www.drupal.org/about/core/policies/core-release-cycles/schedule',
+        'Continuous upgrades between major versions' => 'https://www.drupal.org/about/core/policies/core-change-policies/continuous-upgrades-between-major-versions',
+        'Drupal core releases XML feed' => 'https://updates.drupal.org/release-history/drupal/current',
+    ],
 ];
 
 print json_encode($response);
