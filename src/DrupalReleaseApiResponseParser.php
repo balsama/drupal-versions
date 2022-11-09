@@ -2,7 +2,6 @@
 
 namespace Balsama\DrupalVersionTestMatrix;
 
-use GuzzleHttp\Psr7\Response;
 use Noodlehaus\Exception\ParseException;
 use Noodlehaus\Parser\Xml;
 
@@ -13,7 +12,7 @@ class DrupalReleaseApiResponseParser
     /**
      * @throws ParseException
      */
-    public function __construct(Response $response)
+    public function __construct(string $response)
     {
         $this->drupalReleaseProjectInfo = $this->parseResponse($response);
     }
@@ -26,13 +25,16 @@ class DrupalReleaseApiResponseParser
     /**
      * @throws ParseException
      */
-    private function parseResponse(Response $response): ProjectReleaseInfo
+    private function parseResponse(string $response): ProjectReleaseInfo
     {
         $parser = new Xml();
-        $projectInfo = $parser->parseString($response->getBody());
+        $response = json_decode($response);
+        $projectInfo = $parser->parseString($response->xml);
         return new ProjectReleaseInfo(
             $projectInfo['supported_branches'],
             $projectInfo['releases']['release'],
+            $response->servedFrom,
+            $response->generatedTimestamp,
         );
     }
 }

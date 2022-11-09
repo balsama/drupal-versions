@@ -3,11 +3,10 @@
     "description": "Finds supported versions of Drupal that services should test against.",
     "type": "library",
     "require": {
-        "hassankhan/config": "dev-develop",
         "guzzlehttp/guzzle": "^7",
-        "imangazaliev/didom": "^2",
         "composer/semver": "^3.3",
-        "rollerworks/version": "^0.3.1"
+        "symfony/filesystem": "^6.1",
+        "symfony/finder": "^6.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^9",

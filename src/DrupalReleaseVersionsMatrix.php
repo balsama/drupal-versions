@@ -4,8 +4,7 @@ namespace Balsama\DrupalVersionTestMatrix;
 
 class DrupalReleaseVersionsMatrix
 {
-    private ProjectReleaseInfo $projectReleaseInfo;
-
+    public ProjectReleaseInfo $projectReleaseInfo;
     public MajorVersion $current;
     public MajorVersion|null $next;
     public MajorVersion|null $previous;

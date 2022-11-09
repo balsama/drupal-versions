@@ -5,11 +5,15 @@ use Balsama\DrupalVersionTestMatrix\DrupalReleaseApiResponseParser;
 use Balsama\DrupalVersionTestMatrix\DrupalReleaseVersionsMatrix;
 use GuzzleHttp\Client;
 
+$forceRefresh = false;
+if (array_key_exists('forceRefresh', $_GET)) {
+    $forceRefresh = 'true';
+}
+
 $client = new Client();
-$drupalReleaseApiClient = new DrupalReleaseApiClient($client);
+$drupalReleaseApiClient = new DrupalReleaseApiClient($client, $forceRefresh);
 $drupalReleaseResponseParser = new DrupalReleaseApiResponseParser($drupalReleaseApiClient->getProjectReleaseResponse());
 $drupalReleaseVersionsMatrix = new DrupalReleaseVersionsMatrix($drupalReleaseResponseParser->getProjectReleaseInfo());
-
 
 $response = [
     'majors' => [
@@ -35,6 +39,8 @@ $response = [
         'Continuous upgrades between major versions' => 'https://www.drupal.org/about/core/policies/core-change-policies/continuous-upgrades-between-major-versions',
         'Drupal core releases XML feed' => 'https://updates.drupal.org/release-history/drupal/current',
     ],
+    'generatedFrom' => $drupalReleaseVersionsMatrix->projectReleaseInfo->servedFrom,
+    'generatedTimestamp' => $drupalReleaseVersionsMatrix->projectReleaseInfo->generatedTimestamp,
 ];
 
 print json_encode($response);
