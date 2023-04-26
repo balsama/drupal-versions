@@ -54,7 +54,7 @@ class MajorVersion
     }
     public function getCurrentMinorDevBranch(): ?string
     {
-        if (!$this->currentMinor) {
+        if ($this->currentMinor === null) {
             return null;
         }
         return "$this->major.$this->currentMinor.x-dev";
