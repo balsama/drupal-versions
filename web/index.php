@@ -43,4 +43,6 @@ $response = [
     'generatedTimestamp' => $drupalReleaseVersionsMatrix->projectReleaseInfo->generatedTimestamp,
 ];
 
-print json_encode($response);
+header('Content-Type: application/json; charset=utf-8');
+header('Content-Disposition: inline; filename="drupal-versions-' . $drupalReleaseVersionsMatrix->projectReleaseInfo->generatedTimestamp . '.json"');
+print json_encode($response, JSON_PRETTY_PRINT);
