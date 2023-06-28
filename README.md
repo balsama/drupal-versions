@@ -1,7 +1,10 @@
 # Drupal Versions
 Service which responds with the currently supported versions of Drupal.
 
-This doesn't currently run publicly anywhere. To run the service yourself:
+## Live url:
+http://drupal-versions.herokuapp.com/
+
+To run the service yourself:
 
 1. `$ git clone git@github.com:balsama/drupal-versions.git && cd drupal-versions`
 2. `$ composer install`

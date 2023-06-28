@@ -77,14 +77,14 @@ class MajorVersion
 
     public function getLastMinorLatestRelease(): ?string
     {
-        if (!$this->previousMinor) {
+        if ($this->previousMinor === null) {
             return null;
         }
         return $this->getLatestRelease($this->major, $this->previousMinor);
     }
     public function getLastMinorDevBranch(): ?string
     {
-        if (!$this->previousMinor) {
+        if ($this->previousMinor === null) {
             return null;
         }
         return "$this->major.$this->previousMinor.x-dev";
